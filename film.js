@@ -105,7 +105,7 @@ const filmy = [
 	}
 ]
 filmy.push (	{
-		id: 'kuze, kterou nosim',
+		id: 'kuze-kterou-nosim',
 		nazev: 'Kůže, kterou nosím',
 		plakat: {
 			url: ("img.png"),
@@ -122,11 +122,24 @@ const oFilmu = window.location.hash.slice(1)
 const seznamFilmu = document.getElementById("detail-filmu")
 const filmData = filmy.find((film) => film.id === oFilmu)
 
+const filmPopis = document.querySelector(".card-text")
+filmPopis.innerHTML +=filmData.popis
+
+const filmNazev = document.querySelector (".card-title")
+filmNazev.innerHTML +=filmData.nazev
+
+
+
+const poster = document.querySelector (".col-md-5")
+poster.innerHTML += `
+<img src="${filmData.plakat.url}" class="img-fluid rounded-start" alt="${filmData.plakat.nazev}" width="${filmData.plakat.sirka}" height="${filmData.plakat.vyska}" />
+`
+
 
 //úkol č.6-Den premiéry
 const premieraDate = dayjs(filmData.premiera).format('D. M. YYYY')
 const days = dayjs(filmData.premiera).diff(dayjs(), 'days')
-
+const premiera = document.querySelector("#premiera")
 
 console.log (days)//výsledek je vždycky v záporné hodnotě
 
@@ -139,71 +152,10 @@ let denPremiery = ''
 					denPremiery = `<strong>${premieraDate}</strong>, což bylo před ${Math.abs(days)} dny.`;
 				}
 			} 
-//ÚKOL Č.5-SEZNAM FILMU
-seznamFilmu.innerHTML += `
-<div class="container-lg mt-5">
-<div class="card mb-3" id="detail-filmu">
-	<div class="row g-0">
-		<div class="col-md-5">
-			<img
-				src="${filmData.plakat.url}"
-				alt="plakát"
-				class="img-fluid rounded-start"
-				width="663"
-				height="909"
-			/>
-		</div>
-		<div class="col-md-7">
-			<div class="card-body">
-				<h5 class="card-title">${filmData.nazev}</h5>
-				<p class="card-text">${filmData.popis}</p>
-				<p class="card-text">
-					<small class="text-muted" id="premiera"
-						>Premiéra ${denPremiery}
-						</small
-					>
-					</p>
-					
-					<h6 class="mt-4">Poznámka</h6>
-					<form id="note-form">
-						<div class="row">
-							<div class="col-md-6 col-lg-7 col-xl-8 mb-2">
-								<div class="form-outline">
-									<textarea
-										class="form-control"
-										id="denPremiery-input"
-										rows="4"
-									></textarea>
-									<label class="form-label" for="denPremiery-input"
-										>Text poznámky</label
-									>
-								</div>
-							</div>
-							<div class="col-md-6 col-lg-5 col-xl-4">
-								<div class="form-check d-flex justify-content-center mb-2">
-									<input
-										class="form-check-input me-2 mb-2"
-										type="checkbox"
-										value=""
-										id="terms-checkbox"
-									/>
-									<label class="form-check-label" for="terms-checkbox">
-										Souhlasím se všeobecnými podmínky užívání.
-									</label>
-								</div>
-								<button type="submit" class="btn btn-primary btn-block">
-									Uložit
-								</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-	`
+
+premiera.innerHTML += `Premiéra:${denPremiery}`
+
 //Ukol číslo 7.Hvězdičky
 /*
 
@@ -280,4 +232,4 @@ const comment = (evt) => {
 
 noteFormElm.addEventListener("submit", comment)
 	
-
+//Ukol cislo 9
