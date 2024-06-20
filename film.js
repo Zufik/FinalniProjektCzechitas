@@ -102,5 +102,182 @@ const filmy = [
 		popis:
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
-	},
+	}
 ]
+filmy.push (	{
+		id: 'kuze, kterou nosim',
+		nazev: 'Kůže, kterou nosím',
+		plakat: {
+			url: ("img.png"),
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Drama / Thriller / Psychologický ',
+		popis:
+			'Dvanáct let po smrti manželky, jež zahynula v explodujícím autě, se renomovanému plastickému chirurgovi Robertu Ledgardovi (Antonio Banderas) podařilo vyvinout odolný typ kůže, který by byl býval jeho milovanou zachránil. Šarmantní muž posedlý ideou, jež sahá za hranice bioetiky, se nenechá spoutat skrupulemi ani v okamžiku, kdy se rozhodne svůj vynález testovat.(csfd.cz, Pedro Almodóvar)',
+		premiera: '2012-06-13',
+	}
+)
+const oFilmu = window.location.hash.slice(1)
+const seznamFilmu = document.getElementById("detail-filmu")
+const filmData = filmy.find((film) => film.id === oFilmu)
+
+
+//úkol č.6-Den premiéry
+const premieraDate = dayjs(filmData.premiera).format('D. M. YYYY')
+const days = dayjs(filmData.premiera).diff(dayjs(), 'days')
+
+
+console.log (days)//výsledek je vždycky v záporné hodnotě
+
+let denPremiery = ''
+			if (days < -1) {
+			
+				if (days === 1) {
+					denPremiery = `<strong>${premieraDate}</strong>, což bylo před ${Math.abs(days)} dnem.`;
+				} else {
+					denPremiery = `<strong>${premieraDate}</strong>, což bylo před ${Math.abs(days)} dny.`;
+				}
+			} 
+//ÚKOL Č.5-SEZNAM FILMU
+seznamFilmu.innerHTML += `
+<div class="container-lg mt-5">
+<div class="card mb-3" id="detail-filmu">
+	<div class="row g-0">
+		<div class="col-md-5">
+			<img
+				src="${filmData.plakat.url}"
+				alt="plakát"
+				class="img-fluid rounded-start"
+				width="663"
+				height="909"
+			/>
+		</div>
+		<div class="col-md-7">
+			<div class="card-body">
+				<h5 class="card-title">${filmData.nazev}</h5>
+				<p class="card-text">${filmData.popis}</p>
+				<p class="card-text">
+					<small class="text-muted" id="premiera"
+						>Premiéra ${denPremiery}
+						</small
+					>
+					</p>
+					
+					<h6 class="mt-4">Poznámka</h6>
+					<form id="note-form">
+						<div class="row">
+							<div class="col-md-6 col-lg-7 col-xl-8 mb-2">
+								<div class="form-outline">
+									<textarea
+										class="form-control"
+										id="denPremiery-input"
+										rows="4"
+									></textarea>
+									<label class="form-label" for="denPremiery-input"
+										>Text poznámky</label
+									>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-5 col-xl-4">
+								<div class="form-check d-flex justify-content-center mb-2">
+									<input
+										class="form-check-input me-2 mb-2"
+										type="checkbox"
+										value=""
+										id="terms-checkbox"
+									/>
+									<label class="form-check-label" for="terms-checkbox">
+										Souhlasím se všeobecnými podmínky užívání.
+									</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-block">
+									Uložit
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	`
+//Ukol číslo 7.Hvězdičky
+/*
+
+V souboru film.js si přichystejte pomocnou funkci pro zvýraznění určitého počtu hvězdiček.
+
+Ve funkci počítejte s jedním vstupním parametrem, číslem od jedné do pěti.
+
+Ve funkci projděte cyklem všechny prvky se třídou fa-star.
+
+Zvýrazněným hvězdičkám odeberte třídu far a přidejte fas. Ostatním obráceně. Zvýrazněné nechť jsou ty, 
+které jsou v pořadí menší nebo rovny číslu ze vstupu funkce. Pokud tedy funkci zavoláte například s číslem 
+tři, první tři hvězdičky budou mít třídu fas a zbylé dvě budou mít far.
+
+Funkci vyzkoušejte zavolat s různými hodnotami. Zkušební volání ale v kódu nenechávejte.
+
+Smyčkou přidejte všem hvězdičkám, prvkům se třídou fa-star posluchač události na kliknutí.
+
+Po kliknutí zjistěte, na kterou hvězdičku uživatel kliknul. Každá hvězdička má ve svém textovém obsahu 
+číslo pořadí.
+
+Číslo využijte jako parametr funkce předchystané podle instrukcí výše.
+*/
+
+let stars = document.querySelectorAll(".fa-star")
+console.log (stars)
+
+stars.forEach((star, index1) => {
+	star.addEventListener("mouseenter", () => {
+	  stars.forEach((star, index2) => {
+		index1 >= index2 ? star.classList.add("fas") : star.classList.remove("fas");
+	  });
+	});
+  });
+
+/*
+stars.forEach((star, index1)=>{
+	star.addEventListener("click",(evt)=>{
+		console.log("clicked")
+		console.log(index1)
+		evt.target.classList.remove("far")
+		evt.target.classList.add("fas")
+		})
+	})
+*/
+
+//Ukol číslo 8.HODNOCENÍ
+const noteFormElm = document.querySelector("#note-form")
+const messageInputElm = document.querySelector("#message-input")
+const termsCheckboxElm = document.querySelector("#terms-checkbox")
+const cardTextElm = document.querySelector(".card-text");
+
+const comment = (evt) => {
+	evt.preventDefault()
+	console.log("Funguje")
+
+	if (messageInputElm.value === '') {
+		messageInputElm.classList.add("is-invalid")
+		messageInputElm.focus()
+		console.log("Musíš něco napsat")
+		return
+	} else {
+		
+		if (termsCheckboxElm.checked === false) {
+			termsCheckboxElm.classList.add("is-invalid")
+			termsCheckboxElm.focus()
+			return
+		} else {
+			cardTextElm.innerHTML = `<p class="card-text">${messageInputElm.value}</p>`
+			return
+		}
+	}
+
+}
+
+noteFormElm.addEventListener("submit", comment)
+	
+

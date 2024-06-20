@@ -102,5 +102,46 @@ const filmy = [
 		popis:
 			'Na zámek v podhůří Krkonoš přijíždí jeho nový majitel Štěpán se svojí snoubenkou, krásnou komtesou Blankou, a mladším bratrem Adamem. Cestou kočár nešťastně srazí kolemjdoucí dívku, Adam jí pomůže a ona se do něj zamiluje. Na zámku Adam objeví starou vlašskou knihu, která by měla obsahovat cestu k pokladům. Tajemné značky vlašské knihy však nedokáže vyluštit ani národopisec Jiráček, který v kraji sbírá pověsti a nevychází z údivu nad tím, že zdejší lidé stále věří v Krakonoše. Na zámku se objeví záhadný cizinec a nabídne Štěpánovi, že jej k pokladu za určitých podmínek dovede. Výprava do hor může začít. Naplní se Liduščina láska k Adamovi? Jakou záhadu skrývá starý obraz na zámku Hůrka a co strašlivého se v horách kdysi odehrálo? A kdo je vlastně Krakonoš a jaké je jeho největší tajemství? (csfd.cz, Česká televize)',
 		premiera: '2022-12-24',
-	},
+	}
 ]
+filmy.push (	{
+		id: 'kuze-kterou-nosim',
+		nazev: 'Kůže, kterou nosím',
+		plakat: {
+			url: ("img.png"),
+			sirka: 420,
+			vyska: 592,
+		},
+		ochutnavka: 'Drama / Thriller / Psychologický ',
+		popis:
+			'Dvanáct let po smrti manželky, jež zahynula v explodujícím autě, se renomovanému plastickému chirurgovi Robertu Ledgardovi (Antonio Banderas) podařilo vyvinout odolný typ kůže, který by byl býval jeho milovanou zachránil. Šarmantní muž posedlý ideou, jež sahá za hranice bioetiky, se nenechá spoutat skrupulemi ani v okamžiku, kdy se rozhodne svůj vynález testovat.(csfd.cz, Pedro Almodóvar)',
+		premiera: '2012-06-13',
+	}
+	
+)
+const seznamFilmu = document.getElementById("seznam-filmu")
+
+	filmy.forEach((movie) => {
+		seznamFilmu.innerHTML +=`
+		<div class="col">
+   <div class="card">
+      <img
+         src="${movie.plakat.url}"
+         width="780"
+         height="520"
+         class="card-img-top"
+         alt="plakát"
+      />
+      <div class="card-body">
+         <h5 class="card-title">${movie.nazev}</h5>
+         <p class="card-text">${movie.ochutnavka}</p>
+         <a href="film.html#${movie.id}" class="btn btn-primary">Přehrát</a>
+		 
+      </div>
+   </div>
+</div>
+		`
+	})
+
+
+	
