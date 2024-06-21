@@ -223,7 +223,11 @@ const comment = (evt) => {
 			termsCheckboxElm.focus()
 			return
 		} else {
-			cardTextElm.innerHTML = `<p class="card-text">${messageInputElm.value}</p>`
+			//cardTextElm.innerHTML = `<p class="card-text">${messageInputElm.value}</p>`
+			const cardText = document.createElement("p")
+            cardText.classList.add("card-text")
+            cardText.textContent = `${messageInputElm.value}`
+            document.getElementById("note-form").replaceWith(cardText)
 			return
 		}
 	}
@@ -231,5 +235,6 @@ const comment = (evt) => {
 }
 
 noteFormElm.addEventListener("submit", comment)
+
 	
 //Ukol cislo 9
